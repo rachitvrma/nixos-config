@@ -7,6 +7,9 @@
 # and it shows only where a window is actually transparent. Add an app_id
 # here (see `umbriel windows`) when you make another app translucent.
 [[window_rule]]
+blur_optimized = true
+
+[[window_rule]]
 match.app_id = ["^kitty$", "^emacs$"]
 blur = true
 
@@ -75,5 +78,3 @@ default_workspace = 2
 match.app_id = "^org.gnome.Multiwriter"
 default_floating = true
 default_floating_size_px = { width = 560, height = 220 }
-
-

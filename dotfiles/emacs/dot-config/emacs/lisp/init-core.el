@@ -139,7 +139,9 @@
 ;; Enable pass integration so Emacs can read your ~/.password-store natively
 (use-package auth-source-pass
   :ensure nil
-  :demand t)
+  :demand t
+  :config
+  (auth-source-pass-enable))
 
 (use-package auto-package-update
   :custom

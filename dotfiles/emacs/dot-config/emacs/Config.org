@@ -421,7 +421,9 @@ Enable =pass= integration through =auth-source-pass=:
   ;; Enable pass integration so Emacs can read your ~/.password-store natively
   (use-package auth-source-pass
     :ensure nil
-    :demand t)
+    :demand t
+    :config
+    (auth-source-pass-enable))
 
 #+end_src
 
@@ -505,10 +507,19 @@ Theme, mode line, icons, dashboard and visual aids.
     :custom
     (dashboard-banner-logo-title "GNU Emacsへようこそ、Krishさん!")
     (dashboard-startup-banner "~/.emacs.gif")
-    (initial-buffer-choice (unless (daemonp) #'dashboard-open))
+    ;; The documented daemon recipe: also use the dashboard as the initial
+    ;; buffer of `emacsclient -c' frames. Refreshing on every call is what
+    ;; fixes the off-center layout upstream, and demoting errors keeps a
+    ;; broken widget from killing the daemon at startup.
+    (initial-buffer-choice
+     (lambda ()
+       (with-demoted-errors "dashboard: %S"
+         (dashboard-refresh-buffer))
+       (get-buffer dashboard-buffer-name)))
     (dashboard-center-content t)
     (dashboard-vertically-center-content t)
     (dashboard-navigation-cycle t)
+    (dashboard-projects-backend 'project-el)
 
     ;; Nerd icons
     (dashboard-display-icons-p t)
@@ -517,41 +528,7 @@ Theme, mode line, icons, dashboard and visual aids.
     (dashboard-set-file-icons t)
     ;; Show shortcuts
     (dashboard-show-shortcuts t)
-
-    ;; FIXME: This is a workaround for now
-    ;; Dashboard doesn't start after an update
-    ;; Org Agenda breaks dashboard and agenda breaks because of https://github.com/bastibe/org-journal/issues/15
-    (dashboard-items '((recents . 5)
-                   (bookmarks . 5)
-                   (projects . 5)))
     :config
-    ;; TODO: do something like the above daemonp line
-    ;; (add-hook 'server-after-make-frame-hook 'dashboard-open)
-
-    (defun my/dashboard-on-client-frame ()
-      "Open the dashboard in a bare client frame and re-center it as the frame settles."
-      (when (and (display-graphic-p)
-                 (string= (buffer-name) "*scratch*"))
-        (dashboard-open)
-        (let ((frame (selected-frame))
-              watcher)
-          (setq watcher
-                (lambda (resized-frame)
-                  ;; Re-render only if the dashboard is still showing in this
-                  ;; frame, so Magit/commit windows are never hijacked.
-                  (when (eq resized-frame frame)
-                    (when-let* ((win (get-buffer-window dashboard-buffer-name frame)))
-                      (with-selected-window win
-                        (dashboard-refresh-buffer))))))
-          (add-hook 'window-size-change-functions watcher)
-          ;; The WM may resize in more than one step (maximize, then
-          ;; decorations), so keep re-centering for a short window of time
-          ;; and then remove the watcher for good.
-          (run-with-timer 2 nil
-                          (lambda ()
-                            (remove-hook 'window-size-change-functions watcher))))))
-
-    (add-hook 'server-after-make-frame-hook #'my/dashboard-on-client-frame)
     (dashboard-setup-startup-hook))
 
   (use-package page-break-lines
@@ -759,7 +736,7 @@ Highlight colors in programming mode.
   (defun my/apply-fonts (&rest _)
     "Set fixed- and variable-pitch families; re-run after every theme change."
     (set-face-attribute 'fixed-pitch nil :family "JetBrainsMono Nerd Font" :height 120)
-    (set-face-attribute 'variable-pitch nil :family "Cantarell" :height 140))
+    (set-face-attribute 'variable-pitch nil :family "JetBrainsMono Nerd Font" :height 120))
 
   (add-hook 'enable-theme-functions #'my/apply-fonts)
   (my/apply-fonts)
@@ -1741,6 +1718,7 @@ Org-mode and spell checking.
     :custom
     (org-directory "~/org")
     (org-agenda-files (list org-directory))
+    (org-agenda-skip-unavailable-files t)
     (org-default-notes-file (concat org-directory "/notes.org"))
     (org-capture-templates
      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
@@ -1776,7 +1754,9 @@ Org-mode and spell checking.
     (add-hook 'org-mode-hook (lambda () (setq-local line-spacing 0.15)))
 
     (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+    (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
     (add-to-list 'org-structure-template-alist '("py" . "src python"))
+    (add-to-list 'org-structure-template-alist '("plantuml" . "src plantuml"))
     (add-to-list 'org-structure-template-alist '("bash" . "src bash")))
 #+end_src
 
@@ -1791,6 +1771,7 @@ Org Journal is an independent package. I like to use independent and modular pac
     (org-journal-dir "~/org/journal/")
     (org-journal-file-type 'weekly)
     (org-journal-date-format "%A, %Y-%m-%d")
+    (org-journal-file-format "%Y%m%d.org") ;; Save with a .org extension, because otherwise agenda-integration breaks
     (org-journal-enable-agenda-integration t)
     (org-journal-encrypt-journal nil))
 #+end_src
@@ -1806,7 +1787,9 @@ Org Journal is an independent package. I like to use independent and modular pac
 
   (with-eval-after-load 'org
     (setq org-plantuml-exec-mode 'plantuml)
-    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+    (setq org-babel-lisp-eval-fn "sly-eval")
+    (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)
+                                                             (lisp . t))))
 #+end_src
 
 *** Spell Checking (Org-mode)

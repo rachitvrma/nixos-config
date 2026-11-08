@@ -17,12 +17,13 @@ set synctex true
 # large bold font easier on the eyes in index mode
 # status bar can be disabled with A-s
 set font "monospace 10"
+set recolor true
 
 set synctex-editor-command	"emacsclient +%{line} %{input}"
 
-include noctaliarc
 
 # Include emacs keybindings
 include emacsrc
 
-
+# Sync with noctalia
+include noctaliarc

@@ -18,7 +18,13 @@
         gh
         jq
       ];
-      programs.npm.enable = true;
-      programs.devenv.enable = true;
+      programs = {
+        npm.enable = true;
+        devenv.enable = true;
+        java = {
+          enable = true;
+          binfmt = true;
+        };
+      };
     };
 }

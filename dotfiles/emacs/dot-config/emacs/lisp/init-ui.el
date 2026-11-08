@@ -14,10 +14,19 @@
   :custom
   (dashboard-banner-logo-title "GNU Emacsへようこそ、Krishさん!")
   (dashboard-startup-banner "~/.emacs.gif")
-  (initial-buffer-choice (unless (daemonp) #'dashboard-open))
+  ;; The documented daemon recipe: also use the dashboard as the initial
+  ;; buffer of `emacsclient -c' frames. Refreshing on every call is what
+  ;; fixes the off-center layout upstream, and demoting errors keeps a
+  ;; broken widget from killing the daemon at startup.
+  (initial-buffer-choice
+   (lambda ()
+     (with-demoted-errors "dashboard: %S"
+       (dashboard-refresh-buffer))
+     (get-buffer dashboard-buffer-name)))
   (dashboard-center-content t)
   (dashboard-vertically-center-content t)
   (dashboard-navigation-cycle t)
+  (dashboard-projects-backend 'project-el)
 
   ;; Nerd icons
   (dashboard-display-icons-p t)
@@ -26,41 +35,7 @@
   (dashboard-set-file-icons t)
   ;; Show shortcuts
   (dashboard-show-shortcuts t)
-
-  ;; FIXME: This is a workaround for now
-  ;; Dashboard doesn't start after an update
-  ;; Org Agenda breaks dashboard and agenda breaks because of https://github.com/bastibe/org-journal/issues/15
-  (dashboard-items '((recents . 5)
-                 (bookmarks . 5)
-                 (projects . 5)))
   :config
-  ;; TODO: do something like the above daemonp line
-  ;; (add-hook 'server-after-make-frame-hook 'dashboard-open)
-
-  (defun my/dashboard-on-client-frame ()
-    "Open the dashboard in a bare client frame and re-center it as the frame settles."
-    (when (and (display-graphic-p)
-               (string= (buffer-name) "*scratch*"))
-      (dashboard-open)
-      (let ((frame (selected-frame))
-            watcher)
-        (setq watcher
-              (lambda (resized-frame)
-                ;; Re-render only if the dashboard is still showing in this
-                ;; frame, so Magit/commit windows are never hijacked.
-                (when (eq resized-frame frame)
-                  (when-let* ((win (get-buffer-window dashboard-buffer-name frame)))
-                    (with-selected-window win
-                      (dashboard-refresh-buffer))))))
-        (add-hook 'window-size-change-functions watcher)
-        ;; The WM may resize in more than one step (maximize, then
-        ;; decorations), so keep re-centering for a short window of time
-        ;; and then remove the watcher for good.
-        (run-with-timer 2 nil
-                        (lambda ()
-                          (remove-hook 'window-size-change-functions watcher))))))
-
-  (add-hook 'server-after-make-frame-hook #'my/dashboard-on-client-frame)
   (dashboard-setup-startup-hook))
 
 (use-package page-break-lines
@@ -223,7 +198,7 @@
 (defun my/apply-fonts (&rest _)
   "Set fixed- and variable-pitch families; re-run after every theme change."
   (set-face-attribute 'fixed-pitch nil :family "JetBrainsMono Nerd Font" :height 120)
-  (set-face-attribute 'variable-pitch nil :family "Cantarell" :height 140))
+  (set-face-attribute 'variable-pitch nil :family "JetBrainsMono Nerd Font" :height 120))
 
 (add-hook 'enable-theme-functions #'my/apply-fonts)
 (my/apply-fonts)

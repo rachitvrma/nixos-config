@@ -2,3 +2,15 @@
 input_path = "$XDG_CONFIG_HOME/noctalia/templates/cava/cava.ini"
 output_path = "$XDG_CONFIG_HOME/cava/themes/noctalia"
 post_hook = "bash '{{ config_dir }}/templates/cava/apply.sh'"
+
+[theme.templates.user.zathura]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/zathura/zathurarc"
+output_path = "$XDG_CONFIG_HOME/zathura/noctaliarc"
+post_hook = "bash '{{ config_dir }}/templates/zathura/apply.sh'"
+requires_path = "~/.config/zathura"
+
+[theme.templates.user.emacs]
+input_path = "$XDG_CONFIG_HOME/noctalia/templates/emacs/emacs.el"
+output_path_dynamic = "bash '{{ config_dir }}/templates/emacs/output-path.sh'"
+post_hook = "bash '{{ config_dir }}/templates/emacs/apply.sh'"
+undo_hook = "bash '{{ config_dir }}/templates/emacs/undo.sh'"

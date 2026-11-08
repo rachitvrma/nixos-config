@@ -15,6 +15,7 @@
   :custom
   (org-directory "~/org")
   (org-agenda-files (list org-directory))
+  (org-agenda-skip-unavailable-files t)
   (org-default-notes-file (concat org-directory "/notes.org"))
   (org-capture-templates
    '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
@@ -50,7 +51,9 @@
   (add-hook 'org-mode-hook (lambda () (setq-local line-spacing 0.15)))
 
   (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+  (add-to-list 'org-structure-template-alist '("lisp" . "src lisp"))
   (add-to-list 'org-structure-template-alist '("py" . "src python"))
+  (add-to-list 'org-structure-template-alist '("plantuml" . "src plantuml"))
   (add-to-list 'org-structure-template-alist '("bash" . "src bash")))
 
 (use-package org-journal
@@ -60,6 +63,7 @@
   (org-journal-dir "~/org/journal/")
   (org-journal-file-type 'weekly)
   (org-journal-date-format "%A, %Y-%m-%d")
+  (org-journal-file-format "%Y%m%d.org") ;; Save with a .org extension, because otherwise agenda-integration breaks
   (org-journal-enable-agenda-integration t)
   (org-journal-encrypt-journal nil))
 
@@ -71,7 +75,9 @@
 
 (with-eval-after-load 'org
   (setq org-plantuml-exec-mode 'plantuml)
-  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t))))
+  (setq org-babel-lisp-eval-fn "sly-eval")
+  (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)
+                                                           (lisp . t))))
 
 (use-package ispell
   :ensure nil
