@@ -76,6 +76,9 @@ The repo is expected to live at =~/etc/nixos=.
 
 Get all the tokens into =~/.wgetpaste.d/github.conf=. Use =gh auth token=.
 
+** Emacs Race Condition
+Just noticed that I was using =emacsclient -ca ""= for starting Emacs client buffers. But that created race conditions because that command creates daemons of its own. So I gotta remove =-a ""= from there and keep only =emacsclient -c=.
+
 ** TODO Screenshots
 
 Add a few screenshots (desktop, Emacs dashboard, Noctalia bar) under =.github/images/= and show them near the top of this file.
