@@ -26,7 +26,6 @@
         tombi
         gnumake
         systemd-lsp
-        fish-lsp
         vscode-langservers-extracted
 
         # Only needed once you wire PlantUML into Emacs (step 4)

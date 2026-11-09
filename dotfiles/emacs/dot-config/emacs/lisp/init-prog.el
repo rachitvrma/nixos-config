@@ -19,8 +19,7 @@
           LaTeX-mode
           toml-ts-mode
           systemd-mode
-          nix-mode
-          fish-mode) . eglot-ensure)
+          nix-mode) . eglot-ensure)
   :bind (:map eglot-mode-map
               ("C-c l a" . eglot-code-actions)
               ("C-c l f" . eglot-format-buffer)
@@ -41,9 +40,7 @@
       (add-to-list 'eglot-server-programs
                '((html-mode html-ts-mode) . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs
-               '(systemd-mode . ("systemd-lsp")))
-  (add-to-list 'eglot-server-programs
-               '(fish-mode . ("fish-lsp" "start"))))
+               '(systemd-mode . ("systemd-lsp"))))
 
 (use-package apheleia
   :init
@@ -87,8 +84,6 @@
 (use-package systemd
   :defer t)
 
-(use-package fish-mode)
-
 (use-package json-mode
   :mode "\\.json\\'")
 
@@ -116,7 +111,10 @@
 ;; tells package.el to install `guix' instead of looking for `guix-devel'.
 (use-package guix-devel
   :ensure guix
-  :hook (scheme-mode . guix-devel-mode))
+  :hook (scheme-mode . guix-devel-mode)
+  :config
+  (add-to-list 'load-path "~/.guix-profile/share/emacs/site-lisp")
+  (guix-emacs-autoload-packages))
 
 (use-package sly
   :defer t

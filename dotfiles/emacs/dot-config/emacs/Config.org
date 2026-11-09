@@ -115,13 +115,20 @@ Byte/native-compilation of dependencies at runtime prints a lot of warnings that
 * Main Init (=init.el=)
 
 #+begin_src emacs-lisp
-  ;;; init.el --- Config for my Emacs -*- lexical-binding: t; -*-
+    ;;; init.el --- Config for my Emacs -*- lexical-binding: t; -*-
 
-  ;;; Commentary:
+    ;;; Commentary:
 
   ;; This is my personal Emacs configuration.
 
-  ;;; Code:
+    ;;; Code:
+
+  ;; Ensure packages installed via Guix profile are visible to Emacs
+  (let ((guix-site-lisp (expand-file-name "~/.guix-profile/share/emacs/site-lisp")))
+    (when (file-directory-p guix-site-lisp)
+      (add-to-list 'load-path guix-site-lisp)
+      (when (require 'guix-emacs nil t)
+        (guix-emacs-autoload-packages))))
 
   ;; Initialize package sources
   (require 'package)
@@ -1384,8 +1391,7 @@ Eglot ships with Emacs (29+).
             LaTeX-mode
             toml-ts-mode
             systemd-mode
-            nix-mode
-            fish-mode) . eglot-ensure)
+            nix-mode) . eglot-ensure)
     :bind (:map eglot-mode-map
                 ("C-c l a" . eglot-code-actions)
                 ("C-c l f" . eglot-format-buffer)
@@ -1406,9 +1412,7 @@ Eglot ships with Emacs (29+).
         (add-to-list 'eglot-server-programs
                  '((html-mode html-ts-mode) . ("vscode-html-language-server" "--stdio")))
     (add-to-list 'eglot-server-programs
-                 '(systemd-mode . ("systemd-lsp")))
-    (add-to-list 'eglot-server-programs
-                 '(fish-mode . ("fish-lsp" "start"))))
+                 '(systemd-mode . ("systemd-lsp"))))
 
 #+end_src
 
@@ -1490,14 +1494,6 @@ Tempel completes through =completion-at-point= (so templates show in Corfu), =eg
 
 #+end_src
 
-*** Fish Mode
-
-#+begin_src emacs-lisp
-
-  (use-package fish-mode)
-
-#+end_src
-
 *** Json Mode
 
 #+begin_src emacs-lisp
@@ -1540,7 +1536,10 @@ Interactive Scheme development, as recommended by the Guix manual's "Perfect Set
   ;; tells package.el to install `guix' instead of looking for `guix-devel'.
   (use-package guix-devel
     :ensure guix
-    :hook (scheme-mode . guix-devel-mode))
+    :hook (scheme-mode . guix-devel-mode)
+    :config
+    (add-to-list 'load-path "~/.guix-profile/share/emacs/site-lisp")
+    (guix-emacs-autoload-packages))
 
 #+end_src
 
@@ -1936,6 +1935,7 @@ Not started automatically (that can make startup slow); open it with =C-c n= and
     (newsticker-url-list
      '(("Noctalia" "https://noctalia.dev/rss.xml")
        ("Drew Devault's Blog" "https://drewdevault.com/blog/index.xml")
+       ("Phi Mu Lambda" "https://tv.dyne.org/feeds/videos.xml?videoChannelId=2459")
        ("Fedora Magazine" "https://fedoramagazine.org/feed/")
        ("FreeCodeCamp Blogs" "https://www.freecodecamp.org/news/tag/blog/rss/")
        ("FreeCodeCamp News" "https://www.freecodecamp.org/news/rss")
@@ -1994,6 +1994,13 @@ Kept minimal: initialize the standard set of players/sources and let EMMS auto-d
     :custom
     (emms-source-file-default-directory "~/Music/")
     (emms-browser-covers #'emms-browser-cache-thumbnail-async))
+#+end_src
+
+*** =emureader= -- pdf/document reader
+I have set it to =:ensure nil= because I am letting GNU Guix package it.
+#+begin_src emacs-lisp
+  (use-package emureader
+    :ensure nil)
 #+end_src
 
 *** Utilities

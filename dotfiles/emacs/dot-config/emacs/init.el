@@ -1,10 +1,17 @@
 ;;; init.el --- Config for my Emacs -*- lexical-binding: t; -*-
 
-;;; Commentary:
+  ;;; Commentary:
 
 ;; This is my personal Emacs configuration.
 
-;;; Code:
+  ;;; Code:
+
+;; Ensure packages installed via Guix profile are visible to Emacs
+(let ((guix-site-lisp (expand-file-name "~/.guix-profile/share/emacs/site-lisp")))
+  (when (file-directory-p guix-site-lisp)
+    (add-to-list 'load-path guix-site-lisp)
+    (when (require 'guix-emacs nil t)
+      (guix-emacs-autoload-packages))))
 
 ;; Initialize package sources
 (require 'package)

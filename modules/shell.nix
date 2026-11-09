@@ -1,6 +1,3 @@
-# Shell programs. Their *configuration and shell hooks* (zoxide, direnv,
-# starship, television, vivid, ...) come from stow/bash and stow/fish, so the
-# NixOS integrations are turned off to avoid initialising everything twice.
 {
   flake.nixosModules.shell =
     { pkgs, ... }:
@@ -32,32 +29,15 @@
         eza
         fd
         ripgrep
-
-        # Fish plugins
-        fishPlugins.done
-        fishPlugins.fzf-fish
       ];
 
       programs = {
         bash.completion.enable = true;
-        fish = {
-          enable = true;
-          useBabelfish = true;
-          generateCompletions = true;
-          vendor = {
-            config.enable = true;
-            functions.enable = true;
-            completions.enable = true;
-          };
-        };
         bat.enable = true; # config: stow/bat
 
         direnv = {
           enable = true;
           nix-direnv.enable = true;
-          enableBashIntegration = false; # stow/bash/dot-bashrc.d/90-init.bashrc
-          enableFishIntegration = false; # stow/fish/dot-config/fish/conf.d/90-init.fish
-          # config: stow/direnv
         };
       };
 

@@ -76,6 +76,7 @@
   (newsticker-url-list
    '(("Noctalia" "https://noctalia.dev/rss.xml")
      ("Drew Devault's Blog" "https://drewdevault.com/blog/index.xml")
+     ("Phi Mu Lambda" "https://tv.dyne.org/feeds/videos.xml?videoChannelId=2459")
      ("Fedora Magazine" "https://fedoramagazine.org/feed/")
      ("FreeCodeCamp Blogs" "https://www.freecodecamp.org/news/tag/blog/rss/")
      ("FreeCodeCamp News" "https://www.freecodecamp.org/news/rss")

@@ -4,5 +4,5 @@
 autostart = ["noctalia"]
 focus_on_activate = false
 honor_restored_maximize = false
-show_cheatsheet = true
+show_cheatsheet = false # Don't show cheatsheet at startup
 xwayland = true

@@ -14,6 +14,9 @@
   (emms-source-file-default-directory "~/Music/")
   (emms-browser-covers #'emms-browser-cache-thumbnail-async))
 
+(use-package emureader
+  :ensure nil)
+
 (use-package aria2
   :defer t)
 

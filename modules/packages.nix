@@ -29,6 +29,15 @@
         swayimg
         wiremix
         zathura
+
+        # For emacs reader mode
+        (mupdf.override {
+          enableOcr = true;
+          enableCxx = true;
+          enablePython = true;
+        })
+        python314Packages.pymupdf
+
         pinta
 
         # Documents
