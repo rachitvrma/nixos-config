@@ -15,8 +15,12 @@
         nixd
         nixfmt
         jujutsu
+        just
+        just-lsp
+        just-formatter
         gh
         jq
+        tack
       ];
       programs = {
         npm.enable = true;

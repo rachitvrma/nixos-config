@@ -1387,6 +1387,7 @@ Eglot ships with Emacs (29+).
             tsx-ts-mode
             json-mode
             yaml-ts-mode
+            just-ts-mode
             tex-mode
             LaTeX-mode
             toml-ts-mode
@@ -1407,6 +1408,8 @@ Eglot ships with Emacs (29+).
     :config
     (add-to-list 'eglot-server-programs
                  '(toml-ts-mode . ("tombi" "lsp")))
+    (add-to-list 'eglot-server-programs
+                 '(just-ts-mode . ("just-lsp")))
     (add-to-list 'eglot-server-programs
                  '(nix-mode . ("nixd" "--semantic-tokens=true" "--inlay-hints=false")))
         (add-to-list 'eglot-server-programs
@@ -1499,6 +1502,21 @@ Tempel completes through =completion-at-point= (so templates show in Corfu), =eg
 #+begin_src emacs-lisp
   (use-package json-mode
     :mode "\\.json\\'")
+#+end_src
+
+*** Just Mode
+Edit =justfiles= using this mode.
+
+#+begin_src emacs-lisp
+  (use-package justl)
+
+  (use-package just-ts-mode
+    :ensure t
+    :mode ("(?i)/\\.?justfile\\'" . just-ts-mode)
+    :config
+    ;; Automatically install/build the tree-sitter grammar if not already present
+    (unless (treesit-language-available-p 'just)
+      (just-ts-mode-install-grammar)))
 #+end_src
 
 *** Nix Mode

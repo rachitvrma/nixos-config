@@ -1,6 +1,6 @@
 # Settings every NixOS host of this flake shares.
 # The hosts themselves live in ./hosts/<name>/default.nix.
-{ inputs, ... }:
+{ inputs, self, ... }:
 {
   flake.nixosModules.nixos = {
     nixpkgs = {
@@ -8,7 +8,7 @@
       overlays = [
         # NUR
         inputs.nur.overlays.default
-        # self.overlays.default # my own overlays
+        self.overlays.default # my own overlays
       ];
     };
   };

@@ -35,6 +35,11 @@
         guile
         sbcl
         clisp
+
+        # just ecosystem
+        just
+        just-lsp
+        just-formatter
       ];
     };
 }

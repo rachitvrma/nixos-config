@@ -15,6 +15,7 @@
           tsx-ts-mode
           json-mode
           yaml-ts-mode
+          just-ts-mode
           tex-mode
           LaTeX-mode
           toml-ts-mode
@@ -35,6 +36,8 @@
   :config
   (add-to-list 'eglot-server-programs
                '(toml-ts-mode . ("tombi" "lsp")))
+  (add-to-list 'eglot-server-programs
+               '(just-ts-mode . ("just-lsp")))
   (add-to-list 'eglot-server-programs
                '(nix-mode . ("nixd" "--semantic-tokens=true" "--inlay-hints=false")))
       (add-to-list 'eglot-server-programs
@@ -86,6 +89,16 @@
 
 (use-package json-mode
   :mode "\\.json\\'")
+
+(use-package justl)
+
+(use-package just-ts-mode
+  :ensure t
+  :mode ("(?i)/\\.?justfile\\'" . just-ts-mode)
+  :config
+  ;; Automatically install/build the tree-sitter grammar if not already present
+  (unless (treesit-language-available-p 'just)
+    (just-ts-mode-install-grammar)))
 
 (use-package nix-mode
   :mode "\\.nix\\'")
