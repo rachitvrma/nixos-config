@@ -3,7 +3,7 @@ enable_sounds = true
 sound_volume = 0.5
 
 [bar.default]
-background_opacity = 0.90
+# background_opacity = 0.90
 center = ["widget", "group:g1", "date"]
 end = [
   "group:g7",
@@ -137,13 +137,14 @@ visible = true
 [dock]
 active_monitor_only = true
 auto_hide = true
-background_opacity = 0.80
+background_opacity = 1.0
 enabled = true
 launcher_position = "end"
-pinned = ["firefox", "kitty", "emacsclient", "pcmanfm", "equibop"]
+pinned = ["firefox", "nyxt", "kitty", "emacsclient", "pcmanfm", "equibop"]
 reserve_space = false
 show_dots = true
 show_instance_count = false
+smart_auto_hide = false
 
 [idle]
 behavior_order = ["lock", "screen-off", "lock-and-suspend"]
@@ -203,7 +204,7 @@ type = "login_box"
 
 [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
 background_color = "surface_container"
-background_opacity = 0.88
+# background_opacity = 0.88
 background_radius = 12.0
 center_password_text = false
 input_opacity = 1.0
@@ -230,7 +231,7 @@ type = "login_box"
 
 [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
 background_color = "surface_container"
-background_opacity = 0.88
+# background_opacity = 0.88
 background_radius = 12.0
 center_password_text = false
 input_opacity = 1.0
@@ -257,7 +258,7 @@ rotation = 0.0
 type = "audio_visualizer"
 
 [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
-background_opacity = 0.0
+# background_opacity = 0.0
 bands = 32
 centered = false
 color_2 = "secondary"
@@ -318,7 +319,7 @@ type = "media_player"
 [lockscreen_widgets.widget.lockscreen-widget-0000000000000005.settings]
 album_art_background = true
 audio_visualizer = true
-background_opacity = 0.0
+# background_opacity = 0.0
 background_padding = 0
 background_radius = 29
 hide_when_no_media = true
@@ -370,7 +371,7 @@ auto_sync = true
 
 [shell.panel]
 polkit_placement = "attached"
-transparency_mode = "glass"
+transparency_mode = "solid"
 
 [theme]
 builtin = "Rose Pine"

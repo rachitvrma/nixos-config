@@ -75,7 +75,7 @@
 
 (with-eval-after-load 'org
   (setq org-plantuml-exec-mode 'plantuml)
-  (setq org-babel-lisp-eval-fn "sly-eval")
+  (setq org-babel-lisp-eval-fn #'sly-eval)
   (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)
                                                            (lisp . t))))
 

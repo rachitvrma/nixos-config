@@ -25,7 +25,7 @@
     "nativeTitleBar": false,
     "plugins": {
         "ChatInputButtonAPI": {
-            "enabled": false
+            "enabled": true
         },
         "CommandsAPI": {
             "enabled": true
@@ -602,7 +602,9 @@
             "enabled": true
         },
         "BetterBackreading": {
-            "enabled": false
+            "enabled": true,
+            "imageScrollMargin": "1500",
+            "messageLoadBuffer": "1500"
         },
         "BetterBanReasons": {
             "enabled": false
@@ -978,7 +980,14 @@
             "enabled": false
         },
         "RichPresence": {
-            "enabled": false
+            "enabled": true,
+            "_migrated": true,
+            "abs_enabled": false,
+            "tosu_enabled": false,
+            "sfm_enabled": false,
+            "jf_enabled": false,
+            "gr_enabled": false,
+            "nd_enabled": false
         },
         "RPCEditor": {
             "enabled": false
@@ -1159,7 +1168,8 @@
         },
         "NoTrack": {
             "enabled": true,
-            "disableAnalytics": true
+            "disableAnalytics": true,
+            "allowBadgeTracking": true
         },
         "Settings": {
             "enabled": true,
@@ -1195,6 +1205,12 @@
         },
         "WebContextMenus": {
             "enabled": true
+        },
+        "BetterSearch": {
+            "enabled": true
+        },
+        "DuplicateCategory": {
+            "enabled": true
         }
     },
     "uiElements": {
@@ -1212,6 +1228,6 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1794043688444
+        "settingsSyncVersion": 1794547956958
     }
 }

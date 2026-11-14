@@ -2,7 +2,7 @@
   "dark": {
     "mPrimary": "#d3869b",
     "mOnPrimary": "#141617",
-    "mSecondary": "#e78a4e",
+    "mSecondary": "#7daea3",
     "mOnSecondary": "#141617",
     "mTertiary": "#89b482",
     "mOnTertiary": "#141617",
@@ -14,7 +14,7 @@
     "mOnSurfaceVariant": "#d4be98",
     "mOutline": "#504945",
     "mShadow": "#282828",
-    "mHover": "#7daea3",
+    "mHover": "#e78a4e",
     "mOnHover": "#141617",
     "terminal": {
       "background": "#141617",

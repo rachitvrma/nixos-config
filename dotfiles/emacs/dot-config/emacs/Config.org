@@ -33,7 +33,7 @@ Emacs reads =early-init.el= before the package system, UI, or the first frame ar
 
 #+begin_src emacs-lisp :tangle early-init.el
 
-  (add-to-list 'default-frame-alist '(alpha-background . 90))
+  ;; (add-to-list 'default-frame-alist '(alpha-background . 90))
 
 #+end_src
 
@@ -527,6 +527,11 @@ Theme, mode line, icons, dashboard and visual aids.
     (dashboard-vertically-center-content t)
     (dashboard-navigation-cycle t)
     (dashboard-projects-backend 'project-el)
+    (dashboard-items '((recents . 3)
+                       (bookmarks . 3)
+                       (projects . 3)
+                       (agenda . 3)
+                       (registers . 3)))
 
     ;; Nerd icons
     (dashboard-display-icons-p t)
@@ -536,7 +541,14 @@ Theme, mode line, icons, dashboard and visual aids.
     ;; Show shortcuts
     (dashboard-show-shortcuts t)
     :config
-    (dashboard-setup-startup-hook))
+    (dashboard-setup-startup-hook)
+    (defun my/dashboard-hide-chrome ()
+      "Hide the mode line and tab line in dashboard buffers."
+      (setq-local mode-line-format nil)
+      (setq-local tab-line-exclude t)
+      (tab-line-mode -1))
+
+    (add-hook 'dashboard-mode-hook #'my/dashboard-hide-chrome 90))
 
   (use-package page-break-lines
     :init
@@ -1804,7 +1816,7 @@ Org Journal is an independent package. I like to use independent and modular pac
 
   (with-eval-after-load 'org
     (setq org-plantuml-exec-mode 'plantuml)
-    (setq org-babel-lisp-eval-fn "sly-eval")
+    (setq org-babel-lisp-eval-fn #'sly-eval)
     (org-babel-do-load-languages 'org-babel-load-languages '((plantuml . t)
                                                              (lisp . t))))
 #+end_src

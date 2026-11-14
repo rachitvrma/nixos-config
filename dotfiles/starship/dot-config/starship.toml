@@ -1,37 +1,18 @@
 "$schema" = "https://starship.rs/config-schema.json"
 palette = "noctalia"
 
-# Tartarus-style (AllJavi) prompt using only palette names that the generated
-# Noctalia block defines: crust, text, overlay1, subtext0, mauve, yellow, red,
-# green, blue, teal, sapphire, lavender, peach.
-#
-# HOW TO APPLY
-#   - Replace your top-level `format = """..."""` with the one below.
-#   - Replace the whole sections marked REPLACE.
-#   - In sections marked KEEP SYMBOL, keep your existing `symbol = ...` line
-#     and only swap the `style` and `format` lines.
-#   - Add the sections marked NEW.
-#   - Do NOT touch [os.symbols], [directory.substitutions], the other palettes,
-#     or anything between "# >>> NOCTALIA STARSHIP PALETTE >>>" and
-#     "# <<< NOCTALIA STARSHIP PALETTE <<<" (Noctalia rewrites that block).
-#
-# Powerline glyphs are written as \uXXXX escapes so they survive copy/paste:
-#   \uE0B0 = right arrow, \uE0B2 = left arrow, \uF017 = clock, \uF023 = lock
-
 format = """
-[ ](bold bg:overlay1 fg:crust)\
+[](magenta)\
 $os\
 $username\
-$hostname\
-[ ](bold bg:overlay1 fg:crust)\
-[\uE0B0](bold bg:mauve fg:overlay1)\
+[](bg:#282828 fg:magenta)\
+$directory\
+[](fg:#282828 bg:yellow)\
 $git_branch\
-$git_commit\
-$git_state\
 $git_status\
-[\uE0B0](bold bg:none fg:mauve) \
-$docker_context\
+[](fg:yellow bg:flamingo)\
 $c\
+$cpp\
 $rust\
 $golang\
 $nodejs\
@@ -41,151 +22,180 @@ $java\
 $kotlin\
 $haskell\
 $python\
-$nix_shell\
+[](fg:flamingo bg:surface2)\
+$docker_context\
 $conda\
-$cmd_duration\
-$fill\
-[\uE0B2](bold bg:none fg:text)\
+$pixi\
+[](fg:surface2 bg:#282828)\
 $time\
-[\uE0B2](bold bg:text fg:yellow)\
-$battery\
-[█](bold bg:none fg:yellow)
-[バカ](bold bg:none fg:text) \
-$directory\
-$status\
-$character
-"""
+[ ](fg:#282828)\
+$line_break$character"""
 
-# ---------------------------------------------------------------- REPLACE
-[fill] # NEW
-symbol = " "
+# palette = "gruvbox_dark"
 
-[os] # REPLACE (keep [os.symbols] below it)
+[palettes.gruvbox_dark]
+text = "#fbf1c7"
+surface0 = "#3c3836"
+surface2 = "#665c54"
+blue = "#458588"
+cyan = "#689d6a"
+green = "#98971a"
+flamingo = "#d65d0e"
+magenta = "#b16286"
+red = "#cc241d"
+yellow = "#d79921"
+
+[os]
 disabled = false
-style = "bold bg:overlay1 fg:crust"
+style = "bg:magenta fg:base"
 
-[username] # REPLACE
+[os.symbols]
+Windows = "󰍲 "
+Ubuntu = "󰕈 "
+SUSE = " "
+Raspbian = "󰐿 "
+NixOS = " "
+Mint = "󰣭 "
+Macos = "󰀵 "
+Manjaro = " "
+Linux = "󰌽 "
+Gentoo = "󰣨 "
+Fedora = "󰣛 "
+Alpine = " "
+Amazon = " "
+Android = " "
+AOSC = " "
+Arch = "󰣇 "
+Artix = "󰣇 "
+EndeavourOS = " "
+CentOS = " "
+Debian = "󰣚 "
+Redhat = "󱄛 "
+RedHatEnterprise = "󱄛 "
+Pop = " "
+
+[username]
 show_always = true
-style_user = "bold bg:overlay1 fg:crust"
-style_root = "bold bg:overlay1 fg:crust"
-format = "[$user]($style)"
+style_user = "bg:magenta fg:base"
+style_root = "bg:magenta fg:base"
+format = "[$user ]($style)"
 
-[hostname] # NEW
-ssh_only = true
-style = "bold bg:overlay1 fg:crust"
-format = "[@$hostname]($style)"
-
-[directory] # REPLACE (keep [directory.substitutions])
-style = "bold bg:none fg:yellow"
-format = "[$path]($style)[$read_only]($read_only_style) "
-read_only = " \uF023"
+[directory]
+style = "fg:text bg:#282828"
+format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-[git_branch] # KEEP SYMBOL, swap style + format
-format = "[ $symbol $branch ]($style)"
-style = "bold bg:mauve fg:crust"
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
 
-[git_status] # REPLACE
-style = "bold bg:mauve fg:crust"
-format = "[($all_status$ahead_behind )]($style)"
+[git_branch]
+symbol = ""
+style = "bg:yellow"
+format = "[[ $symbol $branch ](fg:base bg:yellow)]($style)"
 
-[git_commit] # NEW
-style = "bold bg:mauve fg:crust"
-format = '[\($hash$tag\) ]($style)'
+[git_status]
+style = "bg:yellow"
+format = "[[($all_status$ahead_behind )](fg:base bg:yellow)]($style)"
 
-[git_state] # NEW
-style = "bold bg:mauve fg:crust"
-format = '[\($state( $progress_current/$progress_total)\) ]($style)'
+[nodejs]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:text bg:flamingo)]($style)"
 
-# Language modules: KEEP SYMBOL, swap style + format on each.
-# Generic format for all of them:  "[$symbol( $version) ]($style)"
-# Per-module style:
-#   [c]        style = "bold fg:blue"
-#   [rust]     style = "bold fg:red"
-#   [golang]   style = "bold fg:teal"
-#   [nodejs]   style = "bold fg:green"
-#   [bun]      style = "bold fg:peach"
-#   [php]      style = "bold fg:lavender"
-#   [java]     style = "bold fg:red"
-#   [kotlin]   style = "bold fg:sapphire"
-#   [haskell]  style = "bold fg:mauve"
-# Python keeps its virtualenv part:
-#   [python]   style = "bold fg:yellow"
-#              format = '[$symbol( $version)(\(#$virtualenv\)) ]($style)'
+[bun]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:text bg:flamingo)]($style)"
 
-[docker_context] # KEEP SYMBOL
-style = "bold fg:blue"
-format = "[$symbol( $context) ]($style)"
+[c]
+symbol = " "
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
 
-[conda] # KEEP SYMBOL and ignore_base
-style = "bold fg:green"
-format = "[$symbol$environment ]($style)"
+[cpp]
+symbol = " "
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
 
-[nix_shell] # NEW
-symbol = "\uF313 "
-style = "bold fg:sapphire"
-format = "[$symbol$state( \\($name\\)) ]($style)"
+[rust]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
 
-[cmd_duration] # KEEP show_milliseconds / notification keys
-format = "[\uF252 $duration ]($style)"
-style = "bold fg:subtext0"
+[golang]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
 
-[time] # REPLACE
+[php]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
+
+[java]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
+
+[jj_bookmark]
+symbol = ""
+style = "bg:cyan"
+format = '[[ $symbol $bookmark(@$remote)$diverged( \\(+$overflow_count others\\)) ](fg:base bg:cyan)]($style)'
+
+[jj_status]
+style = "bg:cyan"
+format = "[[($all )](fg:base bg:cyan)]($style)"
+
+[kotlin]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
+
+[haskell]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
+
+[python]
+symbol = ""
+style = "bg:flamingo"
+format = "[[ $symbol( $version) ](fg:base bg:flamingo)]($style)"
+
+[docker_context]
+symbol = ""
+style = "bg:surface2"
+format = "[[ $symbol( $context) ](fg:#83a598 bg:surface2)]($style)"
+
+[conda]
+style = "bg:surface2"
+format = "[[ $symbol( $environment) ](fg:#83a598 bg:surface2)]($style)"
+
+[pixi]
+style = "bg:surface2"
+format = "[[ $symbol( $version)( $environment) ](fg:text bg:surface2)]($style)"
+
+[time]
 disabled = false
 time_format = "%R"
-style = "bold bg:text fg:crust"
-format = "[ \uF017 $time ]($style)"
+style = "bg:surface0"
+format = "[[  $time ](fg:text bg:#282828)]($style)"
 
-[battery] # NEW (laptop; remove $battery from format on a desktop)
-full_symbol = "\uF240"
-charging_symbol = "\uF0E7"
-unknown_symbol = "\uF128"
-discharging_symbol = "\uF244"
-format = "[ $symbol $percentage]($style) "
-
-[[battery.display]]
-threshold = 10
-discharging_symbol = "\uF244"
-style = "bold bg:yellow fg:crust"
-
-[[battery.display]]
-threshold = 30
-discharging_symbol = "\uF243"
-style = "bold bg:yellow fg:crust"
-
-[[battery.display]]
-threshold = 50
-discharging_symbol = "\uF242"
-style = "bold bg:yellow fg:crust"
-
-[[battery.display]]
-threshold = 80
-discharging_symbol = "\uF241"
-style = "bold bg:yellow fg:crust"
-
-[[battery.display]]
-threshold = 100
-discharging_symbol = "\uF240"
-style = "bold bg:yellow fg:crust"
-
-[status] # NEW
+[line_break]
 disabled = false
-symbol = "✗"
-format = "[$symbol$status]($style) "
-style = "bold fg:red"
 
-[line_break] # REPLACE (the format has a literal newline)
-disabled = true
-
-[character] # REPLACE
+[character]
 disabled = false
-success_symbol = "[❯](bold fg:text)"
-error_symbol = "[❯](bold fg:red)"
-vimcmd_symbol = "[❮](bold fg:yellow)"
-vimcmd_replace_one_symbol = "[❮](bold fg:mauve)"
-vimcmd_replace_symbol = "[❮](bold fg:mauve)"
-vimcmd_visual_symbol = "[❮](bold fg:yellow)"
+success_symbol = "[](bold fg:green)"
+error_symbol = "[](bold fg:red)"
+vimcmd_symbol = "[](bold fg:green)"
+vimcmd_replace_one_symbol = "[](bold fg:magenta)"
+vimcmd_replace_symbol = "[](bold fg:magenta)"
+vimcmd_visual_symbol = "[](bold fg:yellow)"
 
 # >>> NOCTALIA STARSHIP PALETTE >>>
 # Noctalia Starship Palette

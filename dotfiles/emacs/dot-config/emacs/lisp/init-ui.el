@@ -27,6 +27,11 @@
   (dashboard-vertically-center-content t)
   (dashboard-navigation-cycle t)
   (dashboard-projects-backend 'project-el)
+  (dashboard-items '((recents . 3)
+                     (bookmarks . 3)
+                     (projects . 3)
+                     (agenda . 3)
+                     (registers . 3)))
 
   ;; Nerd icons
   (dashboard-display-icons-p t)
@@ -36,7 +41,14 @@
   ;; Show shortcuts
   (dashboard-show-shortcuts t)
   :config
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+  (defun my/dashboard-hide-chrome ()
+    "Hide the mode line and tab line in dashboard buffers."
+    (setq-local mode-line-format nil)
+    (setq-local tab-line-exclude t)
+    (tab-line-mode -1))
+
+  (add-hook 'dashboard-mode-hook #'my/dashboard-hide-chrome 90))
 
 (use-package page-break-lines
   :init

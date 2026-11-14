@@ -3,7 +3,7 @@ set shell := ["bash", "-euo", "pipefail", "-c"]
 host := "nixpavilion"
 stow := env("STOW", "stow")
 
-# Plain `just` builds the system without switching.
+# Plain `just` lists all the commands available
 default:
   @just --list
 

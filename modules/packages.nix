@@ -47,7 +47,10 @@
 
         # Apps
         equibop # FIXME: fix the autostart file somehow
-        qutebrowser
+        # qutebrowser # A Keyboard based browser based on Python and stuff
+        (nyxt.override {
+          xclip = null;
+        })
         pcmanfm
         speedtest-cli
         timr-tui

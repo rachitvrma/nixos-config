@@ -11,9 +11,9 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "disko",
-    "rev": "cedd626e11b635470fa6f9fdb8ad79b0075dd7f9",
-    "narHash": "sha256-3hSJlv8mUVnZPMWK2+CM7a9O+nR6Z4mCh27NfLCmTPc=",
-    "lastModified": 1792526520
+    "rev": "1dd30c29c88d99ce295f15e27f93c49bc5fbae07",
+    "narHash": "sha256-h2BYMW4nTFpIqnMd8gwAPFmJAp/1wWLQ6vT0NfL5qt4=",
+    "lastModified": 1794328522
   },
   "flake-parts": {
     "type": "github",
@@ -35,16 +35,16 @@
     "type": "github",
     "owner": "nixos",
     "repo": "nixpkgs",
-    "rev": "f4a03c008967841f2a0b3cb7c436fc6fc31671f6",
-    "narHash": "sha256-ziZn2PvCJE5JEEpqTdxXwJpPB+L3YqoCpTAMCzyaP3U=",
-    "lastModified": 1794042290
+    "rev": "d4f25a3e562008648d45bcf2d70bcc7422cad84e",
+    "narHash": "sha256-x9sADJvoVG0L6RejZB+/BB4YiGZFBZrfTlhF4uBq1tQ=",
+    "lastModified": 1794386569
   },
   "nur": {
     "type": "github",
     "owner": "nix-community",
     "repo": "NUR",
-    "rev": "7a1a00c852f0b016a40c8007f5eea181f1060d7b",
-    "narHash": "sha256-CvOjPBCT0QUmWpRl2JkbpZ2vb3A6BNWo/+Rd1jBCCtM=",
-    "lastModified": 1794200401
+    "rev": "2775b02029336044f9b6de224b385eb168ffef47",
+    "narHash": "sha256-oM1w91HPrWtyrk6wq/H/jlSWzjwLd9UkNO2Url7ljWU=",
+    "lastModified": 1794675859
   }
 }
