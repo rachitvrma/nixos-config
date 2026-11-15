@@ -18,7 +18,8 @@
         just
         just-lsp
         just-formatter
-        gh
+        gh # github cli
+        tea # Codeberg/Gitea cli
         jq
         tack
       ];

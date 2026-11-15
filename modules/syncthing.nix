@@ -1,5 +1,5 @@
 {
-  flake.nixosModulse.syncthing = { ... }: {
+  flake.nixosModules.syncthing = { ... }: {
     services.syncthing = {
       enable = true;
       user = "krish";
@@ -13,7 +13,7 @@
         folders.org = {
           path = "/home/krish/org";
           devices = [ "phone" ];
-          ignorePatterns = [ ".git" ];
+          ignorePatterns = [ ".git" ]; # ignore .git patterns so that phone doesn't get git stuff
           versioning = {
             type = "trashcan";
             params.cleanoutDays = "30";

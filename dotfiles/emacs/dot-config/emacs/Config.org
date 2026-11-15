@@ -2050,6 +2050,13 @@ Use =mpv= and =yt-dlp= to stream and download from YouTube.
     :bind ("C-c y" . yeetube))
 #+end_src
 
+*** =syncthing= -- SyncThing client
+
+#+begin_src emacs-lisp
+  (use-package syncthing
+    :commands syncthing)
+#+end_src
+
 *** XDG Launcher
 
 #+begin_src emacs-lisp

@@ -23,6 +23,9 @@
 (use-package yeetube
   :bind ("C-c y" . yeetube))
 
+(use-package syncthing
+  :commands syncthing)
+
 (use-package xdg-launcher
   :vc (:url "https://github.com/emacs-exwm/xdg-launcher"))
 

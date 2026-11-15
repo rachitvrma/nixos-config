@@ -30,6 +30,28 @@
         wiremix
         zathura
 
+        wgetpaste
+
+        # custom package of forge cli
+        (pkgs.buildGoModule {
+          pname = "forge-cli";
+          version = "main";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "git-pkgs";
+            repo = "forge";
+            rev = "main";
+            # hash = pkgs.lib.fakeHash;
+            hash = "sha256-Taf/M9ZhfdFSk3B34HvjI9ynMK9+mkei26OYvLzoBMM=";
+          };
+
+          # vendorHash = pkgs.lib.fakeHash;
+          vendorHash = "sha256-QPJPOUdqCL64QTox2WG0Pg6HmtUWzZgVg8mYFk5cifo=";
+
+          nativeBuildInputs = with pkgs; [ git ];
+          doCheck = false;
+        })
+
         # For emacs reader mode
         (mupdf.override {
           enableOcr = true;
