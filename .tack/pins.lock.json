@@ -43,8 +43,8 @@
     "type": "github",
     "owner": "nix-community",
     "repo": "NUR",
-    "rev": "2775b02029336044f9b6de224b385eb168ffef47",
-    "narHash": "sha256-oM1w91HPrWtyrk6wq/H/jlSWzjwLd9UkNO2Url7ljWU=",
-    "lastModified": 1794675859
+    "rev": "dcd758a02632859380e1618dfc8d222d9cedf065",
+    "narHash": "sha256-iFNggh0Kvq5+afIAB4JH57Or3MxRvRnyvLNJaYhW6Vk=",
+    "lastModified": 1794723435
   }
 }

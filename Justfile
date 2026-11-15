@@ -54,3 +54,7 @@ nixos-install:
 # Only needed if hibernation does not resume (see _hibernation.nix).
 resume-offset:
     ./scripts/nixos/resume-offset.sh
+
+# Clean all the rebuilt generations
+clean:
+  nh clean all

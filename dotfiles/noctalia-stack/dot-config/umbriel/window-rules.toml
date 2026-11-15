@@ -71,8 +71,8 @@ default_floating = true
 default_floating_size_px = { width = 560, height = 220 }
 
 [[window_rule]]
-match.app_id = "^firefox$"
-default_workspace = 2
+match.app_id = ["^firefox$", "^emacs$", "^equibop$"]
+default_maximize = true
 
 [[window_rule]]
 match.app_id = "^org.gnome.Multiwriter"

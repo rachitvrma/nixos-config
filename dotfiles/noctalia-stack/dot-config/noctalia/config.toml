@@ -329,8 +329,23 @@ layout = "horizontal"
 enabled = true
 
 [notification]
+enable_daemon = true
+show_app_name = true
+show_actions = true
+show_progress_bar = true
 background_opacity = 1.0
 layer = "overlay"
+history_retention_hours = 5
+newest_on_edge = true
+keep_dismissed_in_history = false
+
+[notification.filter.batsignal]
+enabled = true
+match = "batsignal"
+show_toast = true
+save_history = false
+play_sound = true
+override_duration = 5000
 
 [osd]
 background_opacity = 1.0

@@ -742,7 +742,7 @@
             "enabled": false
         },
         "FileUpload": {
-            "enabled": false
+            "enabled": true
         },
         "FindReply": {
             "enabled": false
@@ -1211,6 +1211,9 @@
         },
         "DuplicateCategory": {
             "enabled": true
+        },
+        "BetterPollDetails": {
+            "enabled": true
         }
     },
     "uiElements": {
@@ -1228,6 +1231,6 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1794547956958
+        "settingsSyncVersion": 1794756261720
     }
 }
