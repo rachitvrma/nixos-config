@@ -20,8 +20,11 @@
 (use-package aria2
   :defer t)
 
-(use-package yeetube
-  :bind ("C-c y" . yeetube))
+(use-package insidious
+  :vc (:url "https://codeberg.org/MonadicSheep/insidious" :rev :newest)
+  :custom
+  (insidious-video-quality "1080")
+  :bind ("C-c y" . insidious-search))
 
 (use-package syncthing
   :commands syncthing)

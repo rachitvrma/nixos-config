@@ -2042,12 +2042,15 @@ I have set it to =:ensure nil= because I am letting GNU Guix package it.
 
 #+end_src
 
-*** =yeetube= -- YouTube client
+*** =insidious= -- YouTube client
 Use =mpv= and =yt-dlp= to stream and download from YouTube.
 
 #+begin_src emacs-lisp
-  (use-package yeetube
-    :bind ("C-c y" . yeetube))
+  (use-package insidious
+    :vc (:url "https://codeberg.org/MonadicSheep/insidious" :rev :newest)
+    :custom
+    (insidious-video-quality "1080")
+    :bind ("C-c y" . insidious-search))
 #+end_src
 
 *** =syncthing= -- SyncThing client

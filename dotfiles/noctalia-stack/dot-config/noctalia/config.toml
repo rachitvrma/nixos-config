@@ -5,6 +5,7 @@ sound_volume = 0.5
 [bar.default]
 # background_opacity = 0.90
 center = ["widget", "group:g1", "date"]
+position = "bottom"
 end = [
   "group:g7",
   "bar_2",
@@ -18,8 +19,12 @@ end = [
   "session",
 ]
 font_family = "JetBrainsMono Nerd Font"
+font_scale = 1.04
+margin_ends = 80
 panel_overlap = 0
 start = ["group:g4", "workspaces"]
+radius = 30
+thickness = 30
 
 [[bar.default.capsule_group]]
 accordion = true
@@ -145,6 +150,7 @@ reserve_space = false
 show_dots = true
 show_instance_count = false
 smart_auto_hide = false
+position = "top"
 
 [idle]
 behavior_order = ["lock", "screen-off", "lock-and-suspend"]
