@@ -5,7 +5,6 @@
     "themeLinks": [],
     "eagerPatches": false,
     "enabledThemes": [
-        "noctalia-material.theme.css",
         "discord-system24.css",
         "noctalia.theme.css"
     ],
@@ -18,14 +17,14 @@
     "mainWindowFrameless": false,
     "frameless": false,
     "noRoundCorners": false,
-    "transparent": true,
+    "transparent": false,
     "winCtrlQ": false,
     "windowsMaterial": "none",
     "disableMinSize": false,
     "nativeTitleBar": false,
     "plugins": {
         "ChatInputButtonAPI": {
-            "enabled": true
+            "enabled": false
         },
         "CommandsAPI": {
             "enabled": true
@@ -61,18 +60,13 @@
             "enabled": true
         },
         "AccountPanelServerProfile": {
-            "enabled": true
+            "enabled": false
         },
         "AddAttachments": {
             "enabled": false
         },
         "AlwaysAnimate": {
-            "enabled": true,
-            "icons": true,
-            "statusEmojis": true,
-            "serverBanners": true,
-            "nameplates": true,
-            "roleGradients": true
+            "enabled": false
         },
         "AlwaysExpandRoles": {
             "enabled": false
@@ -93,12 +87,15 @@
             "enabled": false
         },
         "BetterGifPicker": {
-            "enabled": true
+            "enabled": false
         },
         "BetterRoleContext": {
             "enabled": false
         },
         "BetterRoleDot": {
+            "enabled": false
+        },
+        "BetterSearch": {
             "enabled": false
         },
         "BetterSessions": {
@@ -114,8 +111,7 @@
             "enabled": false
         },
         "BlurNSFW": {
-            "enabled": true,
-            "blurAmount": 10
+            "enabled": false
         },
         "CallTimer": {
             "enabled": false
@@ -213,9 +209,6 @@
         "FullSearchContext": {
             "enabled": false
         },
-        "FullUserInChatbox": {
-            "enabled": false
-        },
         "GameActivityToggle": {
             "enabled": false
         },
@@ -250,8 +243,7 @@
             "enabled": false
         },
         "IrcColors": {
-            "enabled": true,
-            "memberListColors": true
+            "enabled": false
         },
         "JumpToTop": {
             "enabled": false
@@ -574,8 +566,7 @@
             "enabled": false
         },
         "Animalese": {
-            "enabled": true,
-            "soundQuality": "high"
+            "enabled": false
         },
         "AtSomeone": {
             "enabled": false
@@ -587,24 +578,19 @@
             "enabled": false
         },
         "BannersEverywhere": {
-            "enabled": true
+            "enabled": false
         },
         "DecodeBase64": {
             "enabled": false
         },
         "BetterActivities": {
-            "enabled": true,
-            "removeGameActivityStatus": false,
-            "memberList": true,
-            "userPopout": true
+            "enabled": false
         },
         "BetterAudioPlayer": {
-            "enabled": true
+            "enabled": false
         },
         "BetterBackreading": {
-            "enabled": true,
-            "imageScrollMargin": "1500",
-            "messageLoadBuffer": "1500"
+            "enabled": false
         },
         "BetterBanReasons": {
             "enabled": false
@@ -624,7 +610,13 @@
         "BetterInvites": {
             "enabled": false
         },
+        "BetterMutualServers": {
+            "enabled": false
+        },
         "BetterPlusReacts": {
+            "enabled": false
+        },
+        "BetterPollDetails": {
             "enabled": false
         },
         "BlockKeywords": {
@@ -717,6 +709,9 @@
         "Dragify": {
             "enabled": false
         },
+        "DuplicateCategory": {
+            "enabled": false
+        },
         "EquiTweaks": {
             "enabled": false
         },
@@ -742,7 +737,7 @@
             "enabled": false
         },
         "FileUpload": {
-            "enabled": true
+            "enabled": false
         },
         "FindReply": {
             "enabled": false
@@ -942,9 +937,6 @@
         "PingNotifications": {
             "enabled": false
         },
-        "PlatformSpoofer": {
-            "enabled": false
-        },
         "PolishWording": {
             "enabled": false
         },
@@ -952,8 +944,7 @@
             "enabled": false
         },
         "Questify": {
-            "enabled": false,
-            "migrationVersion": 1
+            "enabled": false
         },
         "Quoter": {
             "enabled": false
@@ -980,14 +971,7 @@
             "enabled": false
         },
         "RichPresence": {
-            "enabled": true,
-            "_migrated": true,
-            "abs_enabled": false,
-            "tosu_enabled": false,
-            "sfm_enabled": false,
-            "jf_enabled": false,
-            "gr_enabled": false,
-            "nd_enabled": false
+            "enabled": false
         },
         "RPCEditor": {
             "enabled": false
@@ -1175,45 +1159,6 @@
             "enabled": true,
             "settingsLocation": "aboveNitro",
             "includeVencordInfoWhenCopying": true
-        },
-        "BetterMutualServers": {
-            "enabled": false
-        },
-        "BadgeAPI": {
-            "enabled": true
-        },
-        "ConcatenatedComponentExtractor": {
-            "enabled": true
-        },
-        "ContextMenuAPI": {
-            "enabled": true
-        },
-        "DisableDeepLinks": {
-            "enabled": true
-        },
-        "EquicordHelper": {
-            "enabled": true
-        },
-        "FixDiscordCss": {
-            "enabled": true
-        },
-        "NoticesAPI": {
-            "enabled": true
-        },
-        "SupportHelper": {
-            "enabled": true
-        },
-        "WebContextMenus": {
-            "enabled": true
-        },
-        "BetterSearch": {
-            "enabled": true
-        },
-        "DuplicateCategory": {
-            "enabled": true
-        },
-        "BetterPollDetails": {
-            "enabled": true
         }
     },
     "uiElements": {
@@ -1231,6 +1176,6 @@
         "authenticated": false,
         "url": "https://cloud.equicord.org/",
         "settingsSync": false,
-        "settingsSyncVersion": 1794756261720
+        "settingsSyncVersion": 1794902425947
     }
 }

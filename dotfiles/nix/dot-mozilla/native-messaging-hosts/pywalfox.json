@@ -4,6 +4,6 @@
   ],
   "description": "Noctalia Firefox theme native messaging host",
   "name": "pywalfox",
-  "path": "/nix/store/42syqlw490kfa2rcvyxyad4fp2rnzzfs-noctalia-5.4.1/bin/.noctalia-wrapped",
+  "path": "/nix/store/9pvbzvw6wnww54ik1bfiyl77nkm8a956-noctalia-5.5.0/bin/.noctalia-wrapped",
   "type": "stdio"
 }

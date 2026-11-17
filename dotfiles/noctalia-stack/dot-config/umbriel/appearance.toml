@@ -5,7 +5,7 @@
 [appearance]
 border_width = 2
 corner_radius = 10
-# drag_opacity = 0.75
+drag_opacity = 1
 outer_border_width = 0
 prefer_no_csd = true
 

@@ -25,6 +25,9 @@ fi
 # fzf: options only; key bindings stay with television (Ctrl-T / Ctrl-R)
 if have fzf; then
   export FZF_DEFAULT_OPTS='--height 40% --prompt ⟫ '
+
+  # Also, source the noctalia template if it exists
+  [ -f ~/.config/fzf/themes/noctalia.sh ] && source ~/.config/fzf/themes/noctalia.sh
 fi
 
 # Starship prompt
