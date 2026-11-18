@@ -13,26 +13,27 @@ curve = "easeout"
 # Optional live workspace reveal (see docs/user/animation.md).
 # Add the bundled effects/animation/workspace_wipe/effect.toml to your includes.
 [animation.workspaces]
-style = "reveal"
-enabled = true # Default: "slide"
+style = "reveal" # Default: "slide"
+enabled = true
 effect = "workspace_wipe"
 duration_ms = 300
 curve = "easeout"
 
 [animation.windows_in]
+enabled = true
 duration_ms = 300
 curve = "easeout"
 effect = "reveal"
 
 [animation.windows_out]
-duration_ms = 250
+enabled = true
+duration_ms = 300
 curve = "easeout"
 effect = "reveal"
 
 [animation.windows_move]
+enabled = true
 effect = "squash"
 
 [animation.windows_drag]
 physics = true
-
-

@@ -2,7 +2,6 @@
 # Applications and session
 "Mod+Return" = { action = "spawn systemd-run --user emacsclient -c", repeat = false }
 "Mod+E" = { action = "spawn systemd-run --user pcmanfm", repeat = false }
-# TODO: Replace this with a script checking for xdg-terminal-exec
 "Mod+T" = { action = "spawn sh -c ~/.config/umbriel/scripts/terminal.sh", repeat = false }
 "Mod+D" = "spawn noctalia msg panel-toggle launcher"
 "Mod+Slash" = "cheatsheet-toggle"

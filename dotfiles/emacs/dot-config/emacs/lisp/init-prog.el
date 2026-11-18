@@ -39,7 +39,7 @@
   (add-to-list 'eglot-server-programs
                '(just-ts-mode . ("just-lsp")))
   (add-to-list 'eglot-server-programs
-               '(nix-mode . ("nixd" "--semantic-tokens=true" "--inlay-hints=false")))
+               '(nix-mode . ("nixd" "--semantic-tokens=true")))
       (add-to-list 'eglot-server-programs
                '((html-mode html-ts-mode) . ("vscode-html-language-server" "--stdio")))
   (add-to-list 'eglot-server-programs

@@ -415,7 +415,6 @@ builtin_ids = [
   "umbriel",
 ]
 community_ids = [
-  "qutebrowser",
   "discord",
   "libreoffice",
   "zathura",
